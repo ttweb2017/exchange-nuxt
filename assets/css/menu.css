@@ -1,0 +1,129 @@
+main{
+    position: relative;
+    overflow-x: hidden;
+}
+.menu{
+    background-color: var(--background);
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: .5s ease-in-out;
+    transform: translateX(-200%);
+    padding-top: 15vh;
+    padding-left: 10vw;
+}
+.menu_active {
+    transform: translateX(0%);
+}
+.menu-list{
+    margin: 0;
+    padding: 0;
+}
+.menu-list li{
+    list-style: none;
+    padding-bottom: 20px;
+}
+.menu-title{
+    padding-bottom: 20px;
+}
+.menu-title::after{
+    display: block;
+    content: " ";
+    background-color: var(--gold);
+    width: 10%;
+    height: 2px;
+    margin-top: 20px;
+}
+.menu-title a{
+    text-decoration: none;
+    color: var(--gold);
+    font-family: "GeometriaNarrowMedium";
+    font-size: 20px;
+}
+.menu-title a:hover, .menu-list li a:hover{
+    text-decoration: underline;
+}
+.menu-list li a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-family: "GeometriaNarrowMedium";
+    font-size: 16px;
+}
+.menu-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    position: absolute;
+    right: -35px;
+    top: 10px;
+}
+.subscribe-menu h3{
+    font-family: 'GothamProBold';
+    font-size: 16pt;
+    color: var(--white);
+    opacity: 0.5;
+}
+.subscribe-menu div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.subscribe-menu div a{
+    margin-right: 5px;
+}
+.subscribe-menu div i{
+    font-size: 23pt;
+    padding: 10px;
+    background-color: var(--white);
+    border-radius: 10pt;
+    color: var(--orange);
+}
+.subscribe-menu div i:not(:last-child){
+    margin-right: 5px;
+}
+
+.navbar-light .navbar-toggler{
+    border-color: transparent;
+    transition: 0.3s;
+}
+.rotate90{
+    transform: rotate(90deg);
+    transition: 0.3s;
+}
+.bg-color-dark-blue, .bg-color-dark-blue::before, .bg-color-dark-blue::after{
+    background-color: var(--dark-blue)!important;
+}
+.color-dark-blue{
+    color: var(--dark-blue)!important;
+}
+.color-grey{
+    color: var(--grey)!important;
+}
+.opacity-1{
+    opacity: 1!important;
+}
+.flex-1-0-25{
+    flex: 1 0 25%;
+}
+@media (max-width: 1366px) {
+    .menu-list li{
+        padding-bottom: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .menu{
+        padding-top: 15vh;
+        padding-left: 15vw;
+    }
+    .menu-title a{
+        font-size: 18px;
+    }
+    .menu-list li{
+        font-size: 16px;
+    }
+
+}

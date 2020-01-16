@@ -1,0 +1,461 @@
+:root {
+    --white: #ffffff;
+    --blue: #003197;
+    --dark-blue: #07215B;
+    --sea-blue: #0056FF;
+    --deep-green: #23eaa4;
+    --gold: #ABA17D;
+    --grey: #80868B;
+    --other-grey: #F6F5F1;
+    --background: #E8EAED;
+
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    height: 4px;
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: var(--dark-blue);
+    border-radius: 8px;
+}
+
+body {
+    background-color: var(--background);
+}
+
+/*PRELOADER*/
+.loaderArea {
+    background: var(--white);
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*PRELOADER*/
+.overflow-y-hidden {
+    overflow-y: hidden !important;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+@font-face {
+    font-family: Ermilov-Bold;
+    src: url("../font/Ermilov-bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: GeometriaNarrowBold;
+    src: url(../font/geometria/Geometria-NarrowBold.eot);
+    src: url(../font/geometria/Geometria-NarrowBold.ttf) format("opentype"),
+    url(../font/geometria/Geometria-NarrowBold.woff2) format("woff2"),
+    url(../font/geometria/Geometria-NarrowBold.woff) format("woff");
+}
+
+@font-face {
+    font-family: GeometriaNarrowMedium;
+    src: url(../font/geometria/Geometria-NarrowMedium.eot);
+    src: url(../font/geometria/Geometria-NarrowMedium.ttf) format("opentype"),
+    url(../font/geometria/Geometria-NarrowMedium.woff2) format("woff2"),
+    url(../font/geometria/Geometria-NarrowMedium.woff) format("woff");
+}
+
+.z-1 {
+    z-index: 1;
+}
+
+.z-1001 {
+    z-index: 1001;
+}
+
+/*****HEADER*****/
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    background-color: transparent;
+    /*height: auto;*/
+}
+
+.header {
+    padding: 30px 130px 15px 250px;
+
+}
+
+.wrraper {
+    display: flex;
+}
+
+.wrraper aside {
+    width: 5vw;
+}
+
+.wrraper main {
+    width: 95vw;
+}
+
+.logo img {
+    width: 70px;
+}
+
+.wrraper aside .mail img {
+    width: 55px;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 60px;
+    padding-bottom: 120px;
+}
+
+.converter-btn {
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 60px;
+}
+
+.converter-btn img {
+    width: 70px;
+}
+
+.kotirowki-btn {
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 60px;
+}
+
+.kotirowki-btn img {
+    width: 45px;
+}
+
+.sticky {
+    padding: 5px 130px 5px 250px;
+    transition: .3s;
+    position: fixed;
+    z-index: 10001;
+    background-color: var(--background);
+}
+
+.sticky-aside {
+    transition: .3s;
+    position: fixed;
+    z-index: 10001;
+}
+
+.aside {
+    z-index: 10001;
+    background-color: var(--background);
+    display: flex !important;
+    justify-content: center !important;
+    -webkit-box-shadow: 6px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 6px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 6px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.sticky-logo {
+    width: 45px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.sticky .sticky-logo {
+    margin-right: 120px;
+    opacity: 1;
+    transition: .3s;
+}
+
+.sticky .burger > span,
+.sticky .burger > span::before,
+.sticky .burger > span::after {
+    background-color: var(--dark-blue)
+}
+
+.burger.active > span,
+.burger.active > span::before,
+.burger.active > span::after {
+    background-color: var(--dark-blue)
+}
+
+.sticky .tel a {
+    opacity: 1 !important;
+    color: var(--dark-blue) !important;
+}
+.sticky .lang li:first-child{
+    background-image: url("../icons/language-stiky.svg");
+}
+.lang li.active:first-child{
+    background-image: url("../icons/language-stiky.svg");
+}
+.sticky .lang li a {
+    opacity: 1 !important;
+    color: var(--grey) !important;
+}
+
+.sticky .lang li a {
+    opacity: 1 !important;
+    color: var(--grey) !important;
+}
+
+/*BURGER MENU*/
+.burger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.burger > span,
+.burger > span::before,
+.burger > span::after {
+    display: block;
+    position: absolute;
+    height: 4px;
+    background-color: var(--white);
+    transition-duration: .25s;
+    border-radius: 4px;
+}
+.burger > span{
+    width: 100%;
+}
+.burger > span::before {
+    content: '';
+    top: -15px;
+    width: 100%;
+}
+
+.burger > span::after {
+    content: '';
+    top: 15px;
+    width: 80%;
+}
+
+.burger.active > span {
+    transform: rotate(45deg);
+}
+
+.burger.active > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+
+.burger.active > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    width: 100%;
+}
+
+/*BURGER MENU*/
+
+/*BURGER MOBILE*/
+.burger-mobile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.burger-mobile > span,
+.burger-mobile > span::before,
+.burger-mobile > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-blue);
+    transition-duration: .25s;
+    border-radius: 4px;
+}
+
+.burger-mobile > span::before {
+    content: '';
+    top: -10px;
+}
+
+.burger-mobile > span::after {
+    content: '';
+    top: 10px;
+    width: 80%;
+}
+
+.burger-mobile.active > span {
+    transform: rotate(45deg);
+}
+
+.burger-mobile.active > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+
+.burger-mobile.active > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    width: 100%;
+}
+
+/*BURGER MOBILE*/
+.tel {
+    margin-right: 83px;
+}
+
+.tel a {
+    font-family: "GeometriaNarrowMedium";
+    color: var(--white);
+    opacity: 60%;
+    font-size: 20px;
+}
+
+.calendar {
+    margin-right: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: normal;
+    font-size: 20px;
+    color: var(--grey);
+    width: 45px;
+    height: 40px;
+    background: url(../icons/header__calendar.svg) no-repeat;
+    background-size: cover;
+}
+
+.lang {
+    text-transform: uppercase;
+    font-family: "GeometriaNarrowBold";
+    color: var(--white);
+    z-index: 1;
+    font-size: 20px;
+    padding: 0;
+    max-width: 30px;
+    list-style: none;
+    overflow: hidden;
+    display: inline-flex;
+    transition: max-width 0.15s ease-out;
+    margin: 0;
+}
+.lang li:first-child{
+    width: 26px;
+    height: 23px;
+    background-image: url("../icons/language.svg");
+    background-size: contain;
+    color: transparent;
+    background-repeat: no-repeat;
+}
+.lang li {
+    display: block;
+    margin-right: 10px;
+}
+
+.lang li a {
+    color: var(--other-grey);
+}
+
+.lang:hover {
+    max-width: 100%;
+    transition: max-width 0.25s ease-in;
+}
+
+/*****HEADER*****/
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 49, 151, 0.4);
+}
+
+#map-full {
+    display: none !important;
+    z-index: 1000;
+    position: absolute;
+    bottom: 60px;
+    right: 10%;
+    width: 115px;
+    height: 115px;
+    cursor: pointer;
+}
+
+.ymaps-2-1-74-controls__control {
+    display: none !important;
+}
+
+footer {
+    border-top: 1px solid var(--background);
+    background-color: var(--dark-blue);
+    padding: 50px 5% 0 calc(250px - 6vw);
+}
+
+footer .footer-title {
+    font-family: "GeometriaNarrowMedium";
+    color: var(--white);
+    opacity: 60%;
+    font-size: 16px;
+}
+
+footer .footer-menu {
+    padding: 0;
+    list-style: none;
+}
+
+footer .footer-menu li a {
+    font-family: "GeometriaNarrowMedium";
+    color: var(--white);
+    font-size: 16px;
+}
+
+footer .copyright {
+    font-family: "GeometriaNarrowMedium";
+    color: var(--white);
+    opacity: 30%;
+    font-size: 16px;
+}
+
+footer .copyright-ttweb {
+    font-size: 16px;
+    color: var(--white);
+}
+
+footer .copyright-ttweb a {
+    font-size: 20px;
+    color: #f7a30b;
+    font-family: "Ermilov-Bold";
+}
+
+footer .copyright-ttweb a:hover {
+    color: #47acc8;
+}
+
+.block-7 #map {
+    padding: 0;
+}
+
+.block-7 > div > div > ymaps {
+    width: 100vw !important;
+}
+
+
