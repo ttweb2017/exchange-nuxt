@@ -1,0 +1,128 @@
+.converter{
+    background-color: var(--dark-blue);
+    opacity: 0;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    /*bottom: 0;*/
+    bottom: 0;
+    width: 60%;
+    height: 50vh;
+    transition: .7s;
+    transform: translateX(-100%);
+    border-top-right-radius: 100px;
+    margin-left: 5vw;
+    padding-left: 140px;
+    padding-top: 100px;
+}
+.converter h5{
+    color: var(--white);
+    font-family: "GeometriaNarrowMedium";
+    font-size: 35px;
+    padding-bottom: 90px;
+}
+.converter_active {
+    transform: translateX(0%);
+    opacity: 1;
+
+}
+.converter .input-group{
+    width: 60%;
+    height: 50%;
+    padding-bottom: 20px;
+}
+.converter .input-group-text{
+    color: var(--white);
+    text-transform: uppercase;
+    background-color: var(--gold);
+    border: 1px solid var(--gold);
+}
+.converter .form-control{
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--gold);
+    border: 1px solid var(--gold);
+    height: 100%!important;
+    font-size: 35px;
+    font-family: "GeometriaNarrowMedium";
+}
+.converter .curs{
+    color: var(--white);
+    font-size: 15px;
+    font-family: "GeometriaNarrowMedium";
+}
+.converter input[type=number]::-webkit-inner-spin-button,
+.converter input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.valute{
+    display: flex;
+    padding-bottom: 25px;
+}
+.valute .calc_convert:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.valute .calc_convert:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.valute .calc_convert{
+    cursor: pointer;
+    padding: 4px 10px 4px 10px;
+    border: 1px solid var(--background);
+    color: var(--white);
+    opacity: 60%;
+    font-size: 20px;
+    font-family: "GeometriaNarrowMedium";
+}
+.valute .calc_convert.active{
+    color: var(--background);
+    opacity: 1;
+    background-color: rgba(232, 234, 237, 0.5);
+}
+
+.converter-cross {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /*top: 60px;
+    left: 250px;*/
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1001;
+}
+.converter-cross > span,
+.converter-cross > span::before,
+.converter-cross > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-blue);
+    transition-duration: .25s;
+    border-radius: 2px;
+}
+.converter-cross > span::before {
+    content: '';
+    top: -15px;
+}
+.converter-cross > span::after {
+    content: '';
+    top: 15px;
+    width: 80%;
+}
+.converter-cross.active > span {
+    transform: rotate(45deg);
+}
+.converter-cross.active > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+.converter-cross.active > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    width: 100%;
+}

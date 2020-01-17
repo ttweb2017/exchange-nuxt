@@ -143,7 +143,7 @@
                   <img :src="require('@/assets/icons/quotation.svg')" alt="quotation">
                 </a>
               </div>
-              <div class="converter-btn">
+              <div v-on:click="toggleConverter" class="converter-btn">
                 <img :src="require('@/assets/icons/converter.svg')" alt="converter">
               </div>
               <div class="mail">
@@ -197,6 +197,88 @@
             </v-container>
           </footer>
         </main>
+        <div :class="{ 'converter_active': isShowConverter }" class="converter">
+          <div class="header-converter">
+            <h5>
+              Converter
+            </h5>
+            <div class="converter-cross active">
+              <span />
+            </div>
+          </div>
+          <v-row>
+            <v-col sm="12" md="6" lg="6" xl="6">
+              <div class="valute">
+                <div
+                  v-for="(currency, index) in currencies"
+                  :key="currency.id"
+                  :class="{ 'active': index == 0 }"
+                  class="calc_convert from"
+                  data-сurrency="currency.code"
+                >
+                  {{ currency.code }}
+                </div>
+              </div>
+              <v-text-field
+                id="currence-1"
+                v-model="convertingCurrency"
+                solo
+                filled
+                clearable
+                :prefix="fromCurrencyCode"
+                type="number"
+              ></v-text-field>
+              <p class="curs">
+                1
+                <span class="base-currency">
+                  {{ fromCurrencyCode }}
+                </span>
+                =
+                <span class="curs-inner-1">
+                  {{ toCurrencyValue / fromCurrencyValue }}
+                </span>
+                <span class="second-currency">
+                  {{ toCurrencyCode }} {{ convertingCurrency }}
+                </span>
+              </p>
+            </v-col>
+            <v-col sm="12" md="6" lg="6" xl="6">
+              <div class="valute">
+                <div
+                  v-for="(currency, index) in currencies"
+                  :key="currency.id"
+                  :class="{ 'active': index == 1 }"
+                  :currency="currency.code"
+                  class="calc_convert to"
+                >
+                  {{ currency.code }}
+                </div>
+              </div>
+              <v-text-field
+                id="currence-2"
+                solo
+                filled
+                clearable
+                :prefix="toCurrencyCode"
+                type="number"
+                disabled
+              ></v-text-field>
+              <p class="curs">
+                1
+                <span class="second-currency">
+                  {{ toCurrencyCode }}
+                </span>
+                =
+                <span class="curs-inner-2">
+                  {{ fromCurrencyValue / toCurrencyValue }}
+                </span>
+                <span class="base-currency">
+                  {{ fromCurrencyCode }}
+                </span>
+              </p>
+            </v-col>
+          </v-row>
+        </div>
       </div>
     </v-app>
   </div>
@@ -212,10 +294,23 @@ export default {
     isScroling: false,
     isBurger: false,
     isMobileBurger: false,
+    isShowConverter: false,
+    fromCurrencyCode: 'TMT',
+    fromCurrencyValue: 1,
+    toCurrencyCode: 'TMT',
+    toCurrencyValue: 1,
+    convertingCurrency: 1,
+    crrncy: [],
     languages: [
       { locale: 'en', name: 'EN' },
       { locale: 'tk', name: 'TK' },
       { locale: 'ru', name: 'RU' }
+    ],
+    currencies: [
+      { id: 1, title: 'Russian Ruble', code: 'RUB', value: 18.18000000 },
+      { id: 2, title: 'Turkmen Manat', code: 'TMT', value: 1.00000000 },
+      { id: 3, title: 'US Dollar', code: 'USD', value: 0.29000000 },
+      { id: 4, title: 'Euro', code: 'EUR', value: 0.260000000 }
     ],
     items: [
       { title: 'Kotirowki', image: 'quotation.svg', icon: 'mdi-clipboard-flow' },
@@ -248,6 +343,22 @@ export default {
     }
   },
   mounted () {
+    const temp = []
+    const tempCurrencies = this.currencies
+    for (let i = 0; i < tempCurrencies.length; i++) {
+      for (let b = 0; b < tempCurrencies.length; b++) {
+        temp[tempCurrencies[b].code] = tempCurrencies[i].value / tempCurrencies[b].value
+      }
+      this.crrncy[tempCurrencies[i].code] = temp
+    }
+
+    if (tempCurrencies.length >= 1) {
+      this.fromCurrencyCode = tempCurrencies[0].code
+      this.fromCurrencyValue = tempCurrencies[0].value
+      this.toCurrencyCode = tempCurrencies[1].code
+      this.toCurrencyValue = tempCurrencies[1].value
+    }
+
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {
@@ -273,6 +384,13 @@ export default {
         this.isMobileBurger = false
       } else {
         this.isMobileBurger = true
+      }
+    },
+    toggleConverter (event) {
+      if (this.isShowConverter) {
+        this.isShowConverter = false
+      } else {
+        this.isShowConverter = true
       }
     },
     menuAncorItem () {
