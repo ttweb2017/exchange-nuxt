@@ -212,9 +212,10 @@
                 <div
                   v-for="(currency, index) in currencies"
                   :key="currency.id"
-                  :class="{ 'active': index == 0 }"
+                  :сurrency-from="currency.code"
+                  v-on:click="selectCurrencyFrom($event, currency)"
+                  :class="{ 'active': index == fromCurrencyActiveIndex }"
                   class="calc_convert from"
-                  data-сurrency="currency.code"
                 >
                   {{ currency.code }}
                 </div>
@@ -222,12 +223,12 @@
               <v-text-field
                 id="currence-1"
                 v-model="convertingCurrency"
+                :prefix="fromCurrencyCode"
                 solo
                 filled
                 clearable
-                :prefix="fromCurrencyCode"
                 type="number"
-              ></v-text-field>
+              />
               <p class="curs">
                 1
                 <span class="base-currency">
@@ -247,8 +248,9 @@
                 <div
                   v-for="(currency, index) in currencies"
                   :key="currency.id"
-                  :class="{ 'active': index == 1 }"
-                  :currency="currency.code"
+                  :class="{ 'active': index == toCurrencyActiveIndex }"
+                  :currencyTo="currency.code"
+                  v-on:click="selectCurrencyTo($event, currency)"
                   class="calc_convert to"
                 >
                   {{ currency.code }}
@@ -256,13 +258,13 @@
               </div>
               <v-text-field
                 id="currence-2"
+                :prefix="toCurrencyCode"
                 solo
                 filled
                 clearable
-                :prefix="toCurrencyCode"
                 type="number"
                 disabled
-              ></v-text-field>
+              />
               <p class="curs">
                 1
                 <span class="second-currency">
@@ -297,8 +299,10 @@ export default {
     isShowConverter: false,
     fromCurrencyCode: 'TMT',
     fromCurrencyValue: 1,
+    fromCurrencyActiveIndex: 0,
     toCurrencyCode: 'TMT',
     toCurrencyValue: 1,
+    toCurrencyActiveIndex: 1,
     convertingCurrency: 1,
     crrncy: [],
     languages: [
@@ -343,11 +347,17 @@ export default {
     }
   },
   mounted () {
-    const temp = []
     const tempCurrencies = this.currencies
     for (let i = 0; i < tempCurrencies.length; i++) {
+      const temp = []
       for (let b = 0; b < tempCurrencies.length; b++) {
-        temp[tempCurrencies[b].code] = tempCurrencies[i].value / tempCurrencies[b].value
+        temp[tempCurrencies[b].code] = tempCurrencies[b].value / tempCurrencies[i].value
+        /*
+        if (tempCurrencies[i].id !== tempCurrencies[b].id) {
+          console.log(tempCurrencies[i].id + ' !== ' + tempCurrencies[b].id)
+          temp[tempCurrencies[b].code] = tempCurrencies[b].value / tempCurrencies[i].value
+        }
+        */
       }
       this.crrncy[tempCurrencies[i].code] = temp
     }
@@ -392,6 +402,19 @@ export default {
       } else {
         this.isShowConverter = true
       }
+    },
+    selectCurrencyFrom (event, code) {
+      this.fromCurrencyCode = code
+      console.log(this.crrncy)
+      console.log(this.fromCurrencyCode + ' / ' + this.convertingCurrency + ' / ' + this.crrncy[code][this.toCurrencyCode])
+      console.log(this.convertingCurrency * this.crrncy[code][this.toCurrencyCode])
+      fromCurrencyActiveIndex
+      event.target.classList.add('active')
+    },
+    selectCurrencyTo (event, code) {
+      this.toCurrencyCode = code
+      console.log(this.toCurrencyCode + ' / ' + this.convertingCurrency + ' / ' + this.crrncy[code][this.fromCurrencyCode])
+      console.log(this.convertingCurrency * this.crrncy[code][this.fromCurrencyCode])
     },
     menuAncorItem () {
       const myHtml = document.getElementsByTagName('html')[0]
