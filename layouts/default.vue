@@ -408,7 +408,7 @@ export default {
       console.log(this.crrncy)
       console.log(this.fromCurrencyCode + ' / ' + this.convertingCurrency + ' / ' + this.crrncy[code][this.toCurrencyCode])
       console.log(this.convertingCurrency * this.crrncy[code][this.toCurrencyCode])
-      fromCurrencyActiveIndex
+
       event.target.classList.add('active')
     },
     selectCurrencyTo (event, code) {
